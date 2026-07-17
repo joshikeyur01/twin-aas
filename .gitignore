@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# NOTE: generated model artefacts (deploy/basyx/*.json, the OPC-UA spec) are
+# checked in on purpose — regenerate with `just gen-model`, never ignore them.
+
+# Container volumes (bind mounts)
+deploy/**/data/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Env
+.env
+.env.local

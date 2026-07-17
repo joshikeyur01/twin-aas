@@ -1,0 +1,69 @@
+# Workspace root. Holds shared tool config and dev tooling only — every
+# runtime dependency belongs to the member that needs it (see docs/adr/).
+[project]
+name = "twin-aas"
+version = "0.1.0"
+description = "Three information-model adapters (BaSyx AAS, OPC-UA, raw MQTT) over one UR5 twin, with an empirical comparison harness."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Keyur Joshi", email = "keyurjoshi2104@gmail.com" }]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "httpx2",              # starlette TestClient transport
+    "types-PyYAML>=6.0",   # model generator reads YAML
+]
+
+[tool.uv]
+package = false   # the root is a virtual project; members carry the code
+
+[tool.uv.workspace]
+members = [
+    "model",
+    "feeder",
+    "adapters/aas-populator",
+    "adapters/opcua-server",
+    "comparison",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF", "TID", "PL"]
+ignore = ["PLR0913"]
+
+[tool.ruff.lint.per-file-ignores]
+# Asserting against literal status codes and values is what tests are for.
+"**/tests/*.py" = ["PLR2004"]
+
+[tool.ruff.lint.isort]
+# The src layouts hide these from ruff's first-party detection.
+known-first-party = ["modelgen", "feeder", "aas_populator", "opcua_server", "comparison"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["asyncua", "asyncua.*"]
+implicit_reexport = true   # asyncua re-exports Server/Node/ua without __all__
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "-ra --strict-markers --cov --cov-report=term-missing"
+markers = [
+    "slow: integration tests that need the compose stack running",
+    "bench: full benchmark runs; slow and stack-dependent by nature",
+]
