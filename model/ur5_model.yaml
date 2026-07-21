@@ -1,0 +1,115 @@
+# The property tree, defined once. Both the AAS submodels (deploy/basyx/)
+# and the OPC-UA address-space spec (adapters/opcua-server/spec/) are
+# generated from this file — `just gen-model` — so the three adapters can
+# only disagree about *how* they say things, never about *what* they say.
+#
+# Schema (kept deliberately small; the generator validates it):
+#   type:        string | double | int | boolean
+#   unit:        UCUM-ish plain string, omitted where dimensionless
+#   value:       literal, static submodels only
+#   source:      feeder-feed path, dynamic submodels only
+#                ("pose.<field>" from twin/ur5/pose JSON,
+#                 "joint.<name>.<field>" from twin/ur5/joint/# topics)
+#   semantic_id: IRDI for well-known ECLASS concepts, IRI otherwise.
+#                Custom IRIs use a placeholder domain — a production shell
+#                would register these; the comparison doesn't need that.
+
+asset:
+  id_short: UR5Twin
+  aas_id: https://twin-portfolio.example/aas/ur5-twin
+  global_asset_id: https://twin-portfolio.example/asset/ur5-001
+  kind: Instance
+
+submodels:
+  Nameplate:
+    kind: static
+    semantic_id: https://admin-shell.io/zvei/nameplate/2/0/Nameplate
+    properties:
+      ManufacturerName:
+        type: string
+        value: Universal Robots
+        semantic_id: "0173-1#02-AAO677#002"
+      ManufacturerProductDesignation:
+        type: string
+        value: UR5
+        semantic_id: "0173-1#02-AAW338#001"
+      SerialNumber:
+        type: string
+        value: SIM-UR5-001
+        semantic_id: "0173-1#02-AAM556#002"
+      YearOfConstruction:
+        type: string
+        value: "2026"
+        semantic_id: "0173-1#02-AAP906#001"
+
+  TechnicalData:
+    kind: static
+    semantic_id: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2
+    properties:
+      Payload:
+        type: double
+        value: 5.0
+        unit: kg
+        semantic_id: https://twin-portfolio.example/semantics/payload
+      Reach:
+        type: double
+        value: 0.85
+        unit: m
+        semantic_id: https://twin-portfolio.example/semantics/reach
+      DegreesOfFreedom:
+        type: int
+        value: 6
+        semantic_id: https://twin-portfolio.example/semantics/dof
+      Mass:
+        type: double
+        value: 18.4
+        unit: kg
+        semantic_id: https://twin-portfolio.example/semantics/mass
+
+  OperationalData:
+    kind: dynamic
+    semantic_id: https://twin-portfolio.example/semantics/operational-data
+    collections:
+      EndEffectorPose:
+        semantic_id: https://twin-portfolio.example/semantics/ee-pose
+        properties:
+          X: {type: double, unit: m, source: pose.x}
+          Y: {type: double, unit: m, source: pose.y}
+          Z: {type: double, unit: m, source: pose.z}
+          Qx: {type: double, source: pose.qx}
+          Qy: {type: double, source: pose.qy}
+          Qz: {type: double, source: pose.qz}
+          Qw: {type: double, source: pose.qw}
+          StampNs: {type: int, source: pose.stamp_ns}
+      JointPositions:
+        semantic_id: https://twin-portfolio.example/semantics/joint-positions
+        properties:
+          ShoulderPan: {type: double, unit: rad, source: joint.shoulder_pan_joint.position}
+          ShoulderLift: {type: double, unit: rad, source: joint.shoulder_lift_joint.position}
+          Elbow: {type: double, unit: rad, source: joint.elbow_joint.position}
+          Wrist1: {type: double, unit: rad, source: joint.wrist_1_joint.position}
+          Wrist2: {type: double, unit: rad, source: joint.wrist_2_joint.position}
+          Wrist3: {type: double, unit: rad, source: joint.wrist_3_joint.position}
+
+  Capability:
+    kind: static
+    semantic_id: https://twin-portfolio.example/semantics/capability
+    properties:
+      SupportsJointTrajectoryCommand:
+        type: boolean
+        value: true
+        semantic_id: https://twin-portfolio.example/semantics/cap-joint-trajectory
+      ControlInterface:
+        type: string
+        value: JointTrajectory via twin-services command-svc
+        semantic_id: https://twin-portfolio.example/semantics/cap-control-interface
+      Repeatability:
+        type: double
+        value: 0.0001
+        unit: m
+        semantic_id: https://twin-portfolio.example/semantics/cap-repeatability
+      MaxTcpSpeed:
+        type: double
+        value: 1.0
+        unit: m/s
+        semantic_id: https://twin-portfolio.example/semantics/cap-max-tcp-speed
