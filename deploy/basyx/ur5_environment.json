@@ -1,0 +1,528 @@
+{
+  "assetAdministrationShells": [
+    {
+      "modelType": "AssetAdministrationShell",
+      "id": "https://twin-portfolio.example/aas/ur5-twin",
+      "idShort": "UR5Twin",
+      "assetInformation": {
+        "assetKind": "Instance",
+        "globalAssetId": "https://twin-portfolio.example/asset/ur5-001"
+      },
+      "submodels": [
+        {
+          "type": "ModelReference",
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "https://twin-portfolio.example/submodels/nameplate"
+            }
+          ]
+        },
+        {
+          "type": "ModelReference",
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "https://twin-portfolio.example/submodels/technicaldata"
+            }
+          ]
+        },
+        {
+          "type": "ModelReference",
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "https://twin-portfolio.example/submodels/operationaldata"
+            }
+          ]
+        },
+        {
+          "type": "ModelReference",
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "https://twin-portfolio.example/submodels/capability"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "submodels": [
+    {
+      "modelType": "Submodel",
+      "id": "https://twin-portfolio.example/submodels/nameplate",
+      "idShort": "Nameplate",
+      "kind": "Instance",
+      "submodelElements": [
+        {
+          "modelType": "Property",
+          "idShort": "ManufacturerName",
+          "valueType": "xs:string",
+          "value": "Universal Robots",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "0173-1#02-AAO677#002"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "ManufacturerProductDesignation",
+          "valueType": "xs:string",
+          "value": "UR5",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "0173-1#02-AAW338#001"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "SerialNumber",
+          "valueType": "xs:string",
+          "value": "SIM-UR5-001",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "0173-1#02-AAM556#002"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "YearOfConstruction",
+          "valueType": "xs:string",
+          "value": "2026",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "0173-1#02-AAP906#001"
+              }
+            ]
+          }
+        }
+      ],
+      "semanticId": {
+        "type": "ExternalReference",
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "https://admin-shell.io/zvei/nameplate/2/0/Nameplate"
+          }
+        ]
+      }
+    },
+    {
+      "modelType": "Submodel",
+      "id": "https://twin-portfolio.example/submodels/technicaldata",
+      "idShort": "TechnicalData",
+      "kind": "Instance",
+      "submodelElements": [
+        {
+          "modelType": "Property",
+          "idShort": "Payload",
+          "valueType": "xs:double",
+          "value": "5.0",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/payload"
+              }
+            ]
+          },
+          "qualifiers": [
+            {
+              "kind": "ConceptQualifier",
+              "type": "Unit",
+              "valueType": "xs:string",
+              "value": "kg"
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "idShort": "Reach",
+          "valueType": "xs:double",
+          "value": "0.85",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/reach"
+              }
+            ]
+          },
+          "qualifiers": [
+            {
+              "kind": "ConceptQualifier",
+              "type": "Unit",
+              "valueType": "xs:string",
+              "value": "m"
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "idShort": "DegreesOfFreedom",
+          "valueType": "xs:long",
+          "value": "6",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/dof"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "Mass",
+          "valueType": "xs:double",
+          "value": "18.4",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/mass"
+              }
+            ]
+          },
+          "qualifiers": [
+            {
+              "kind": "ConceptQualifier",
+              "type": "Unit",
+              "valueType": "xs:string",
+              "value": "kg"
+            }
+          ]
+        }
+      ],
+      "semanticId": {
+        "type": "ExternalReference",
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2"
+          }
+        ]
+      }
+    },
+    {
+      "modelType": "Submodel",
+      "id": "https://twin-portfolio.example/submodels/operationaldata",
+      "idShort": "OperationalData",
+      "kind": "Instance",
+      "submodelElements": [
+        {
+          "modelType": "SubmodelElementCollection",
+          "idShort": "EndEffectorPose",
+          "value": [
+            {
+              "modelType": "Property",
+              "idShort": "X",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "m"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Y",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "m"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Z",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "m"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Qx",
+              "valueType": "xs:double",
+              "value": "0.0"
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Qy",
+              "valueType": "xs:double",
+              "value": "0.0"
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Qz",
+              "valueType": "xs:double",
+              "value": "0.0"
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Qw",
+              "valueType": "xs:double",
+              "value": "0.0"
+            },
+            {
+              "modelType": "Property",
+              "idShort": "StampNs",
+              "valueType": "xs:long",
+              "value": "0"
+            }
+          ],
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/ee-pose"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "idShort": "JointPositions",
+          "value": [
+            {
+              "modelType": "Property",
+              "idShort": "ShoulderPan",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "ShoulderLift",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Elbow",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Wrist1",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Wrist2",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "idShort": "Wrist3",
+              "valueType": "xs:double",
+              "value": "0.0",
+              "qualifiers": [
+                {
+                  "kind": "ConceptQualifier",
+                  "type": "Unit",
+                  "valueType": "xs:string",
+                  "value": "rad"
+                }
+              ]
+            }
+          ],
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/joint-positions"
+              }
+            ]
+          }
+        }
+      ],
+      "semanticId": {
+        "type": "ExternalReference",
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "https://twin-portfolio.example/semantics/operational-data"
+          }
+        ]
+      }
+    },
+    {
+      "modelType": "Submodel",
+      "id": "https://twin-portfolio.example/submodels/capability",
+      "idShort": "Capability",
+      "kind": "Instance",
+      "submodelElements": [
+        {
+          "modelType": "Property",
+          "idShort": "SupportsJointTrajectoryCommand",
+          "valueType": "xs:boolean",
+          "value": "true",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/cap-joint-trajectory"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "ControlInterface",
+          "valueType": "xs:string",
+          "value": "JointTrajectory via twin-services command-svc",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/cap-control-interface"
+              }
+            ]
+          }
+        },
+        {
+          "modelType": "Property",
+          "idShort": "Repeatability",
+          "valueType": "xs:double",
+          "value": "0.0001",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/cap-repeatability"
+              }
+            ]
+          },
+          "qualifiers": [
+            {
+              "kind": "ConceptQualifier",
+              "type": "Unit",
+              "valueType": "xs:string",
+              "value": "m"
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "idShort": "MaxTcpSpeed",
+          "valueType": "xs:double",
+          "value": "1.0",
+          "semanticId": {
+            "type": "ExternalReference",
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://twin-portfolio.example/semantics/cap-max-tcp-speed"
+              }
+            ]
+          },
+          "qualifiers": [
+            {
+              "kind": "ConceptQualifier",
+              "type": "Unit",
+              "valueType": "xs:string",
+              "value": "m/s"
+            }
+          ]
+        }
+      ],
+      "semanticId": {
+        "type": "ExternalReference",
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "https://twin-portfolio.example/semantics/capability"
+          }
+        ]
+      }
+    }
+  ],
+  "conceptDescriptions": []
+}

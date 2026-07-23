@@ -1,0 +1,286 @@
+{
+  "namespace_uri": "https://twin-portfolio.example/opcua",
+  "root": "UR5Twin",
+  "objects": [
+    {
+      "browse_name": "Nameplate",
+      "node_id": "UR5Twin.Nameplate",
+      "description": "semantic: https://admin-shell.io/zvei/nameplate/2/0/Nameplate",
+      "variables": [
+        {
+          "browse_name": "ManufacturerName",
+          "node_id": "UR5Twin.Nameplate.ManufacturerName",
+          "data_type": "String",
+          "value": "Universal Robots",
+          "unit": null,
+          "source": null,
+          "description": "semantic: 0173-1#02-AAO677#002"
+        },
+        {
+          "browse_name": "ManufacturerProductDesignation",
+          "node_id": "UR5Twin.Nameplate.ManufacturerProductDesignation",
+          "data_type": "String",
+          "value": "UR5",
+          "unit": null,
+          "source": null,
+          "description": "semantic: 0173-1#02-AAW338#001"
+        },
+        {
+          "browse_name": "SerialNumber",
+          "node_id": "UR5Twin.Nameplate.SerialNumber",
+          "data_type": "String",
+          "value": "SIM-UR5-001",
+          "unit": null,
+          "source": null,
+          "description": "semantic: 0173-1#02-AAM556#002"
+        },
+        {
+          "browse_name": "YearOfConstruction",
+          "node_id": "UR5Twin.Nameplate.YearOfConstruction",
+          "data_type": "String",
+          "value": "2026",
+          "unit": null,
+          "source": null,
+          "description": "semantic: 0173-1#02-AAP906#001"
+        }
+      ],
+      "objects": []
+    },
+    {
+      "browse_name": "TechnicalData",
+      "node_id": "UR5Twin.TechnicalData",
+      "description": "semantic: https://admin-shell.io/ZVEI/TechnicalData/Submodel/1/2",
+      "variables": [
+        {
+          "browse_name": "Payload",
+          "node_id": "UR5Twin.TechnicalData.Payload",
+          "data_type": "Double",
+          "value": 5.0,
+          "unit": "kg",
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/payload"
+        },
+        {
+          "browse_name": "Reach",
+          "node_id": "UR5Twin.TechnicalData.Reach",
+          "data_type": "Double",
+          "value": 0.85,
+          "unit": "m",
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/reach"
+        },
+        {
+          "browse_name": "DegreesOfFreedom",
+          "node_id": "UR5Twin.TechnicalData.DegreesOfFreedom",
+          "data_type": "Int64",
+          "value": 6,
+          "unit": null,
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/dof"
+        },
+        {
+          "browse_name": "Mass",
+          "node_id": "UR5Twin.TechnicalData.Mass",
+          "data_type": "Double",
+          "value": 18.4,
+          "unit": "kg",
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/mass"
+        }
+      ],
+      "objects": []
+    },
+    {
+      "browse_name": "OperationalData",
+      "node_id": "UR5Twin.OperationalData",
+      "description": "semantic: https://twin-portfolio.example/semantics/operational-data",
+      "variables": [],
+      "objects": [
+        {
+          "browse_name": "EndEffectorPose",
+          "node_id": "UR5Twin.OperationalData.EndEffectorPose",
+          "description": "semantic: https://twin-portfolio.example/semantics/ee-pose",
+          "variables": [
+            {
+              "browse_name": "X",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.X",
+              "data_type": "Double",
+              "value": null,
+              "unit": "m",
+              "source": "pose.x",
+              "description": null
+            },
+            {
+              "browse_name": "Y",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Y",
+              "data_type": "Double",
+              "value": null,
+              "unit": "m",
+              "source": "pose.y",
+              "description": null
+            },
+            {
+              "browse_name": "Z",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Z",
+              "data_type": "Double",
+              "value": null,
+              "unit": "m",
+              "source": "pose.z",
+              "description": null
+            },
+            {
+              "browse_name": "Qx",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Qx",
+              "data_type": "Double",
+              "value": null,
+              "unit": null,
+              "source": "pose.qx",
+              "description": null
+            },
+            {
+              "browse_name": "Qy",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Qy",
+              "data_type": "Double",
+              "value": null,
+              "unit": null,
+              "source": "pose.qy",
+              "description": null
+            },
+            {
+              "browse_name": "Qz",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Qz",
+              "data_type": "Double",
+              "value": null,
+              "unit": null,
+              "source": "pose.qz",
+              "description": null
+            },
+            {
+              "browse_name": "Qw",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.Qw",
+              "data_type": "Double",
+              "value": null,
+              "unit": null,
+              "source": "pose.qw",
+              "description": null
+            },
+            {
+              "browse_name": "StampNs",
+              "node_id": "UR5Twin.OperationalData.EndEffectorPose.StampNs",
+              "data_type": "Int64",
+              "value": null,
+              "unit": null,
+              "source": "pose.stamp_ns",
+              "description": null
+            }
+          ]
+        },
+        {
+          "browse_name": "JointPositions",
+          "node_id": "UR5Twin.OperationalData.JointPositions",
+          "description": "semantic: https://twin-portfolio.example/semantics/joint-positions",
+          "variables": [
+            {
+              "browse_name": "ShoulderPan",
+              "node_id": "UR5Twin.OperationalData.JointPositions.ShoulderPan",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.shoulder_pan_joint.position",
+              "description": null
+            },
+            {
+              "browse_name": "ShoulderLift",
+              "node_id": "UR5Twin.OperationalData.JointPositions.ShoulderLift",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.shoulder_lift_joint.position",
+              "description": null
+            },
+            {
+              "browse_name": "Elbow",
+              "node_id": "UR5Twin.OperationalData.JointPositions.Elbow",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.elbow_joint.position",
+              "description": null
+            },
+            {
+              "browse_name": "Wrist1",
+              "node_id": "UR5Twin.OperationalData.JointPositions.Wrist1",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.wrist_1_joint.position",
+              "description": null
+            },
+            {
+              "browse_name": "Wrist2",
+              "node_id": "UR5Twin.OperationalData.JointPositions.Wrist2",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.wrist_2_joint.position",
+              "description": null
+            },
+            {
+              "browse_name": "Wrist3",
+              "node_id": "UR5Twin.OperationalData.JointPositions.Wrist3",
+              "data_type": "Double",
+              "value": null,
+              "unit": "rad",
+              "source": "joint.wrist_3_joint.position",
+              "description": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "browse_name": "Capability",
+      "node_id": "UR5Twin.Capability",
+      "description": "semantic: https://twin-portfolio.example/semantics/capability",
+      "variables": [
+        {
+          "browse_name": "SupportsJointTrajectoryCommand",
+          "node_id": "UR5Twin.Capability.SupportsJointTrajectoryCommand",
+          "data_type": "Boolean",
+          "value": true,
+          "unit": null,
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/cap-joint-trajectory"
+        },
+        {
+          "browse_name": "ControlInterface",
+          "node_id": "UR5Twin.Capability.ControlInterface",
+          "data_type": "String",
+          "value": "JointTrajectory via twin-services command-svc",
+          "unit": null,
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/cap-control-interface"
+        },
+        {
+          "browse_name": "Repeatability",
+          "node_id": "UR5Twin.Capability.Repeatability",
+          "data_type": "Double",
+          "value": 0.0001,
+          "unit": "m",
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/cap-repeatability"
+        },
+        {
+          "browse_name": "MaxTcpSpeed",
+          "node_id": "UR5Twin.Capability.MaxTcpSpeed",
+          "data_type": "Double",
+          "value": 1.0,
+          "unit": "m/s",
+          "source": null,
+          "description": "semantic: https://twin-portfolio.example/semantics/cap-max-tcp-speed"
+        }
+      ],
+      "objects": []
+    }
+  ]
+}
