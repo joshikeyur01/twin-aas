@@ -1,0 +1,21 @@
+# The judge. Three frozen clients, one benchmark runner, one generated
+# COMPARISON.md. Client LOC is a measurement — see AGENTS.md fairness rules.
+[project]
+name = "comparison"
+version = "0.1.0"
+description = "Asks 'current end-effector pose?' through all three adapters; measures latency, verbosity, client LOC."
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "aiomqtt>=2.3",        # mqtt-raw client
+    "asyncua>=1.1",        # opcua client
+    "httpx2",              # aas REST client
+    "pydantic>=2.7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/comparison"]
