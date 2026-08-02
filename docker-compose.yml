@@ -1,0 +1,93 @@
+name: twin-aas
+
+# NOTE: binds 1883 like twin-services' stack — stop that one first; the two
+# stacks are not meant to run simultaneously (and benchmarks want isolation).
+# Service builds use the repo root as context so images can copy shared code.
+
+x-svc-healthcheck: &svc-healthcheck
+  interval: 5s
+  timeout: 2s
+  retries: 3
+  start_period: 10s
+
+services:
+  # ─── infra ─────────────────────────────────────────────────────────────
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./deploy/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  aas-env:
+    # Unmodified BaSyx AAS environment (fairness rule: config and REST only).
+    # BaSyx v2 publishes milestones, not plain semver — pin the newest
+    # milestone, bump deliberately, record it in COMPARISON.md's methodology.
+    image: eclipsebasyx/aas-environment:2.0.0-milestone-13
+    ports:
+      - "8081:8081"
+    environment:
+      BASYX_ENVIRONMENT: file:/application/aas
+      BASYX_BACKEND: InMemory
+    volumes:
+      - ./deploy/basyx:/application/aas:ro   # generated submodels (just gen-model)
+    restart: unless-stopped
+
+  aas-web-ui:
+    # Optional eyeballing UI: `just ui`. Not part of any benchmark.
+    profiles: ["ui"]
+    image: eclipsebasyx/aas-gui:v2-241006
+    ports:
+      - "8082:3000"
+    environment:
+      AAS_REPO_PATH: http://localhost:8081/shells
+      SUBMODEL_REPO_PATH: http://localhost:8081/submodels
+    restart: unless-stopped
+
+  # ─── this repo's processes ─────────────────────────────────────────────
+  feeder:
+    build:
+      context: .
+      dockerfile: feeder/Dockerfile
+    depends_on: [mosquitto]
+    ports:
+      - "8090:8090"
+    environment:
+      MQTT_HOST: mosquitto
+    healthcheck:
+      <<: *svc-healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8090/healthz/ready', timeout=2)"]
+    restart: unless-stopped
+
+  aas-populator:
+    build:
+      context: .
+      dockerfile: adapters/aas-populator/Dockerfile
+    depends_on: [mosquitto, aas-env]
+    ports:
+      - "8091:8091"
+    environment:
+      MQTT_HOST: mosquitto
+      BASYX_URL: http://aas-env:8081
+      UPDATE_RATE_HZ: "10"   # fairness rule: keep equal to opcua-server's
+    healthcheck:
+      <<: *svc-healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8091/healthz/ready', timeout=2)"]
+    restart: unless-stopped
+
+  opcua-server:
+    build:
+      context: .
+      dockerfile: adapters/opcua-server/Dockerfile
+    depends_on: [mosquitto]
+    ports:
+      - "4840:4840"
+      - "8092:8092"
+    environment:
+      MQTT_HOST: mosquitto
+      UPDATE_RATE_HZ: "10"   # fairness rule: keep equal to aas-populator's
+    healthcheck:
+      <<: *svc-healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8092/healthz/ready', timeout=2)"]
+    restart: unless-stopped
